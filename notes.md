@@ -27,3 +27,12 @@ partial函数的功能包括：
     # 通过使用partial函数对parser.add_argument方法进行包装，将其设置为一个默认添加帮助信息的方法，即所有添加的参数都具有相同的默认帮助信息（空字符串）。
     return parser   # 返回创建的解析器对象
 ```
+```python
+def parse_gpus(gpus):
+    if gpus == 'all':
+        return list(range(torch.cuda.device_count()))
+    else:
+        return [int(s) for s in gpus.split(',')]
+# torch.cuda.device_count()返回当前系统中可用的GPU设备数量。再生成序列，再生成列表。
+# gpus 的输入类型为字符串，由gpu的id组成，由逗号分隔 else之后的语句为返回该id整数型的参数列表
+```
